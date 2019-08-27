@@ -14,6 +14,10 @@ if ! hash docker > /dev/null 2>&1; then
 
 	sudo apt-get -qq install -y docker-ce docker-ce-cli containerd.io
 	sudo usermod -a -G docker vagrant
+
+        #Up max count for elasticsearch
+        sudo sh -c 'echo vm.max_map_count=262144 > /etc/sysctl.conf'
+        sudo sysctl --system
 fi
 
 # Install Lando.
