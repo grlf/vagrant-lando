@@ -1,0 +1,2 @@
+remote_ip=$(printenv | grep -oP 'SSH_CLIENT=\K(\d*\.\d*\.\d*\.\d*)')
+export LANDO_APP_ENV="{\"LANDO_HOST_IP\":\"$remote_ip\"}"

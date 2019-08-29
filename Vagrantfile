@@ -30,8 +30,10 @@ Vagrant.configure(2) do |config|
   config.vagrant.plugins = ["vagrant-disksize"]
   config.vm.hostname = settings["vb"]["hostname"]
   config.vm.box = settings["vb"]["box"]
-  config.vm.network "private_network", type: "dhcp"
-  config.vm.synced_folder ".", "/vagrant", type: settings["vb"]["sync"]
+  config.vm.network "private_network", ip: "192.168.10.11"
+  config.vm.synced_folder ".", "/vagrant", type: settings["vb"]["sync"], id: "vagrant"
+  config.vm.provision "file", source:  "~/.ssh", destination: "/home/vagrant/.lando/keys"
+  config.vm.provision "file", source: "#{dir}/dist/bash_profile", destination: "/home/vagrant/.bash_profile"
   config.disksize.size = settings["vb"]["disksize"]
 
   if settings["vb"]["ports"]
@@ -54,5 +56,4 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "./provision.sh", run: "always", env: { "LANDO_VERSION" => settings["vb"]["lando_version"] }
   config.vm.post_up_message = "Ready to go! Just vagrant ssh and run lando start to get going."
   config.ssh.extra_args = ["-t", "cd /vagrant && exec bash --login"]
-  config.ssh.forward_agent = true
 end
