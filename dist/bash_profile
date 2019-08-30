@@ -4,17 +4,3 @@ export LANDO_APP_ENV="{\"LANDO_HOST_IP\":\"$remote_ip\"}"
 
 # Make shell cyan
 export PS1="\e[0;36m[\u@\h \W]\$ \e[m "
-
-# Clean docker stuff
-removecontainers() {
-    docker stop $(docker ps -aq)
-    docker rm $(docker ps -aq)
-}
-​
-armageddon() {
-    removecontainers
-    docker network prune -f
-    docker rmi -f $(docker images --filter dangling=true -qa)
-    docker volume rm $(docker volume ls --filter dangling=true -q)
-    docker rmi -f $(docker images -qa)
-}
