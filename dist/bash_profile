@@ -3,4 +3,4 @@ remote_ip=$(printenv | grep -oP 'SSH_CLIENT=\K(\d*\.\d*\.\d*\.\d*)')
 export LANDO_APP_ENV="{\"LANDO_HOST_IP\":\"$remote_ip\"}"
 
 # Make shell cyan
-export PS1="\e[0;36m[\u@\h \W]\$ \e[m "
+export PS1="\e[0;36m[\u@\h \W]\$ \e[m"
