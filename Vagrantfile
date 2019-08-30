@@ -56,4 +56,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "./provision.sh", run: "always", env: { "LANDO_VERSION" => settings["vb"]["lando_version"] }
   config.vm.post_up_message = "Ready to go! Just vagrant ssh and run lando start to get going."
   config.ssh.extra_args = ["-t", "cd /vagrant && exec bash --login"]
+  config.ssh.forward_agent=true
 end
