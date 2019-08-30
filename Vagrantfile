@@ -30,8 +30,8 @@ Vagrant.configure(2) do |config|
   config.vagrant.plugins = ["vagrant-disksize"]
   config.vm.hostname = settings["vb"]["hostname"]
   config.vm.box = settings["vb"]["box"]
-  config.vm.network "private_network", ip: "192.168.10.11"
-  config.vm.synced_folder ".", "/vagrant", type: settings["vb"]["sync"], id: "vagrant"
+  config.vm.network "private_network", ip: settings["vb"]["vagrant-ip"]
+  config.vm.synced_folder settings["vb"]["local-mount"], "/vagrant", type: settings["vb"]["sync"], id: "vagrant", create:true
   config.vm.provision "file", source:  "~/.ssh", destination: "/home/vagrant/.lando/keys"
   config.vm.provision "file", source: "#{dir}/dist/bash_profile", destination: "/home/vagrant/.bash_profile"
   config.disksize.size = settings["vb"]["disksize"]

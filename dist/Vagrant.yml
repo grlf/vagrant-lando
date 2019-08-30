@@ -35,3 +35,9 @@ vb:
   ## needs to be manually synced. 'nfs' on Mac and 'smb' on Windows are usually
   ## a good balance of performance and convenience.
   sync: 'nfs'
+
+  ## This is the local folder in which your code resides
+  local-mount: '~/Development/lando'
+
+  ## This is the ip address of the vagrant box
+  vagrant-ip: '192.168.10.11'
