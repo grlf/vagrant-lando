@@ -6,7 +6,7 @@ vb:
 
   ## The exact version of Lando you want to install. Check out the Releases
   ## page on GitHub if you are unsure: https://github.com/lando/lando/releases
-  lando_version: v3.0.0-rc.20
+  lando_version: v3.0.0-rc.23
 
   ## The ports you would like forwarded to your local host, in the format
   ## 'xxxx:yyyy', where xxxx is the port on your host and yyyy is the port in
@@ -14,7 +14,7 @@ vb:
   ports:
     - '80:80'
     - '443:443'
-    - '8080:8080'
+    - '3306:3306'
 
   ## Which vagrant box to use
   box: ubuntu/xenial64
@@ -28,7 +28,7 @@ vb:
   ## How big to make the hard drive. You can specify the size as a raw number
   ## (in bytes) or using KB, MB, GB or TB. See the vagrant-disksize plugin
   ## for more details here: https://github.com/sprotheroe/vagrant-disksize
-  disksize: 20GB
+  disksize: 40GB
 
   ## Method used for synced folders. The default (empty) is to use the VM
   ## Providers' file sharing method. Other valid values include nfs, smb, or

@@ -1,6 +1,18 @@
+
 # Spoof the local IP.  Without this XDEBUG will look on the virual machine instead of local. 
 remote_ip=$(printenv | grep -oP 'SSH_CLIENT=\K(\d*\.\d*\.\d*\.\d*)')
 export LANDO_APP_ENV="{\"LANDO_HOST_IP\":\"$remote_ip\"}"
 
 # Make shell cyan
 export PS1="\e[0;36m[\u@\h \W]\$ \e[m"
+
+## Colorize the ls output ##
+alias ls='ls --color=auto'
+ 
+## Use a long listing format ##
+alias ll='ls -la'
+ 
+## Show hidden files ##
+alias l.='ls -d .* --color=auto'
+
+alias mkdir='mkdir -pv'

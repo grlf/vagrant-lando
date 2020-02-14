@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-LANDO_VERSION=${LANDO_VERSION:-v3.0.0-rc.19}
+LANDO_VERSION=${LANDO_VERSION:-v3.0.0-rc.23}
 
 # Install Docker.
 if ! hash docker > /dev/null 2>&1; then
@@ -26,4 +26,7 @@ if ! hash lando > /dev/null 2>&1; then
 	wget -O /tmp/lando.deb https://github.com/lando/lando/releases/download/${LANDO_VERSION}/lando-${LANDO_VERSION}.deb
 	sudo dpkg -i /tmp/lando.deb
 	rm /tmp/lando.deb
+	sudo mkdir -p /home/vagrant/.lando/keys
+	sudo chown vagrant:vagrant /home/vagrant/.lando
+	sudo chown vagrant:vagrant /home/vagrant/.lando/keys
 fi

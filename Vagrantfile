@@ -33,7 +33,6 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: settings["vb"]["vagrant-ip"]
   config.vm.synced_folder settings["vb"]["local-mount"], "/vagrant", type: settings["vb"]["sync"], id: "code_dir", create:true
   config.vm.synced_folder "~/.lando/certs", "/home/vagrant/.lando/certs", type: settings["vb"]["sync"],id: "selfsigned_certs", create:true
-  config.vm.provision "file", source:  "~/.ssh", destination: "/home/vagrant/.lando/keys"
   config.vm.provision "file", source: "#{dir}/dist/bash_profile", destination: "/home/vagrant/.bash_profile"
   config.disksize.size = settings["vb"]["disksize"]
 
@@ -55,6 +54,7 @@ Vagrant.configure(2) do |config|
 
   # Run the init script.
   config.vm.provision "shell", path: "./provision.sh", run: "always", env: { "LANDO_VERSION" => settings["vb"]["lando_version"] }
+  config.vm.provision "file", source:  "~/.ssh", destination: "/home/vagrant/.lando/keys"
   config.vm.post_up_message = "Ready to go! Just vagrant ssh and run lando start to get going."
   config.ssh.extra_args = ["-t", "cd /vagrant && exec bash --login"]
   config.ssh.forward_agent=true
