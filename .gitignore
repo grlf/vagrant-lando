@@ -3,3 +3,4 @@
 /provision.sh
 /.vagrant
 /*.log
+/certs

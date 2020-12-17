@@ -6,7 +6,7 @@ vb:
 
   ## The exact version of Lando you want to install. Check out the Releases
   ## page on GitHub if you are unsure: https://github.com/lando/lando/releases
-  lando_version: v3.0.0-rc.23
+  lando_version: v3.0.23
 
   ## The ports you would like forwarded to your local host, in the format
   ## 'xxxx:yyyy', where xxxx is the port on your host and yyyy is the port in

@@ -49,3 +49,26 @@ syncing type. If you are on Mac, it is recommended you set `sync` to `'nfs'`. If
 you are on Windows, `'smb'` is recommended. For the fastest performance, set
 `sync` to `'rsync'`, but you'll have to call `vagrant rsync` every so often to
 get files back and forth between the host and the vm.
+
+## Allowing HTTPS
+
+Setting up https is a bit funky.  The first thing you need to do is spin up a random
+lando container on the new instance.  This will generate the keys.  You then need to
+copy the cert local and authorize it.
+
+Inside the vagrant box:
+```
+cat ~/.lando/certs/lndo.site.pem
+```
+
+Copy your key and then paste it into a file on your Mac:
+```
+cd ~/LandoVagrant/certs
+nano lndo.site.pem
+{{THEN COPY IT HERE AND SAVE}}
+```
+
+Then you need to authorize the cert:
+```
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/LandoVagrant/certs/lndo.site.pem
+```
