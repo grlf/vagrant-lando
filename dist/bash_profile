@@ -1,7 +1,7 @@
 
 # Spoof the local IP.  Without this XDEBUG will look on the virual machine instead of local. 
 remote_ip=$(printenv | grep -oP 'SSH_CLIENT=\K(\d*\.\d*\.\d*\.\d*)')
-export LANDO_APP_ENV="{\"LANDO_HOST_IP\":\"$remote_ip\"}"
+export LANDO_APP_ENV="{\"LANDO_HOST_IP\":\"$remote_ip\",\"LANDO_HOST_OS\":\"vagrant\"}"
 export LANDO_BIND_ADDRESS=0.0.0.0
 
 # Make shell cyan
